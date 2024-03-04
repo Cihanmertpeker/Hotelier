@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Hotelier.EntityLayer.Concrete;
 using Hotelier.WebUI.Dtos.AboutDto;
+using Hotelier.WebUI.Dtos.BookingDto;
 using Hotelier.WebUI.Dtos.LoginDto;
 using Hotelier.WebUI.Dtos.RegisterDto;
 using Hotelier.WebUI.Dtos.ServiceDto;
@@ -30,6 +31,8 @@ namespace Hotelier.WebUI.Mapping
 
             CreateMap<CreateSubscribeDto, Subscribe>().ReverseMap();
 
+            CreateMap<CreateBookingDto, Booking>().ReverseMap();
+            CreateMap<ApprovedReservationDto, Booking>().ReverseMap();
         }
     }
 }
