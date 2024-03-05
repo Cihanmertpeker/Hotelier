@@ -4,14 +4,16 @@ using Hotelier.DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Hotelier.DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240304190920_add_Guests")]
+    partial class add_Guests
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -202,38 +204,6 @@ namespace Hotelier.DataAccessLayer.Migrations
                     b.ToTable("Bookings");
                 });
 
-            modelBuilder.Entity("Hotelier.EntityLayer.Concrete.Contact", b =>
-                {
-                    b.Property<int>("ContactID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Mail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Message")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MessageCategoryID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Subject")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ContactID");
-
-                    b.HasIndex("MessageCategoryID");
-
-                    b.ToTable("Contacts");
-                });
-
             modelBuilder.Entity("Hotelier.EntityLayer.Concrete.Guest", b =>
                 {
                     b.Property<int>("GuestID")
@@ -253,21 +223,6 @@ namespace Hotelier.DataAccessLayer.Migrations
                     b.HasKey("GuestID");
 
                     b.ToTable("Guests");
-                });
-
-            modelBuilder.Entity("Hotelier.EntityLayer.Concrete.MessageCategory", b =>
-                {
-                    b.Property<int>("MessageCategoryID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("MessageCategoryName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MessageCategoryID");
-
-                    b.ToTable("MessageCategories");
                 });
 
             modelBuilder.Entity("Hotelier.EntityLayer.Concrete.Room", b =>
@@ -304,39 +259,6 @@ namespace Hotelier.DataAccessLayer.Migrations
                     b.HasKey("RoomID");
 
                     b.ToTable("Rooms");
-                });
-
-            modelBuilder.Entity("Hotelier.EntityLayer.Concrete.SendMessage", b =>
-                {
-                    b.Property<int>("SendMessageID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ReceiverMail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ReceiverName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SenderMail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SenderName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SendMessageID");
-
-                    b.ToTable("SendMessages");
                 });
 
             modelBuilder.Entity("Hotelier.EntityLayer.Concrete.Service", b =>
@@ -527,17 +449,6 @@ namespace Hotelier.DataAccessLayer.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Hotelier.EntityLayer.Concrete.Contact", b =>
-                {
-                    b.HasOne("Hotelier.EntityLayer.Concrete.MessageCategory", "MessageCategory")
-                        .WithMany("Contacts")
-                        .HasForeignKey("MessageCategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("MessageCategory");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("Hotelier.EntityLayer.Concrete.AppRole", null)
@@ -587,11 +498,6 @@ namespace Hotelier.DataAccessLayer.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Hotelier.EntityLayer.Concrete.MessageCategory", b =>
-                {
-                    b.Navigation("Contacts");
                 });
 #pragma warning restore 612, 618
         }
