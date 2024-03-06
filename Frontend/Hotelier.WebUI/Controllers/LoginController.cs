@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 namespace Hotelier.WebUI.Controllers
 {
     [AllowAnonymous]
-
     public class LoginController : Controller
     {
         private readonly SignInManager<AppUser> _signInManager;
@@ -16,6 +15,7 @@ namespace Hotelier.WebUI.Controllers
         {
             _signInManager = signInManager;
         }
+        [HttpGet]
         public IActionResult Index()
         {
             return View();

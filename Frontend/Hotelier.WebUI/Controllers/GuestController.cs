@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hotelier.WebUI.Controllers
 {
+
     public class GuestController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

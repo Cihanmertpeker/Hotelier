@@ -64,7 +64,13 @@ namespace Hotelier.WebApi
 
             services.AddScoped<IMessageCategoryDal, EfMessageCategoryDal>();
             services.AddScoped<IMessageCategoryService, MessageCategoryManager>();
-                     
+
+            services.AddScoped<IWorkLocationDal, EfWorkLocationDal>();
+            services.AddScoped<IWorkLocationService, WorkLocationManager>();
+
+            services.AddScoped<IAppUserDal, EfAppUserDal>();
+            services.AddScoped<IAppUserService, AppUserManager>();
+
 
             services.AddAutoMapper(typeof(Startup));
 
@@ -78,8 +84,8 @@ namespace Hotelier.WebApi
             });
 
 
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
+            services.AddControllers().AddNewtonsoftJson(options =>
+                        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore); services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hotelier.WebApi", Version = "v1" });
             });

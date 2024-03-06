@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 namespace Hotelier.WebUI.Controllers
 {
     [AllowAnonymous]
-
     public class DefaultController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

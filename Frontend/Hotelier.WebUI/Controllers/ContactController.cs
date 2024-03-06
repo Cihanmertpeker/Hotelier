@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Hotelier.WebUI.Dtos.ContactDto;
+using Hotelier.WebUI.Dtos.MessageCategoryDto;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System;
-using Microsoft.AspNetCore.Authorization;
-using Hotelier.WebUI.Dtos.ContactDto;
-using Hotelier.WebUI.Dtos.MessageCategoryDto;
-using System.Linq;
 
 namespace Hotelier.WebUI.Controllers
 {

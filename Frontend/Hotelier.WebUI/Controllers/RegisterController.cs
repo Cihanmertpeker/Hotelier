@@ -15,10 +15,12 @@ namespace Hotelier.WebUI.Controllers
         {
             _userManager = userManager;
         }
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Index(CreateNewUserDto createNewUserDto)
         {
@@ -32,6 +34,7 @@ namespace Hotelier.WebUI.Controllers
                 Email = createNewUserDto.Mail,
                 Surname = createNewUserDto.Surname,
                 UserName = createNewUserDto.Username,
+                WorkLocationID = 1
             };
             var result = await _userManager.CreateAsync(appUser, createNewUserDto.Password);
             if (result.Succeeded)
